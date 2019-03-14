@@ -2,4 +2,6 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-image: url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/N13e7awhgiljgescq/videoblocks-animated-background-of-blue-sky-and-white-clouds_s6cjyst3g_thumbnail-full01.png');
+  background-attachment: fixed;
 }
