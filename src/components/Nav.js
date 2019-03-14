@@ -1,18 +1,29 @@
-import piggy from '../porco.png'
-import React from 'react'
+import piggy from "../porco.png";
+import React from "react";
 
-const Nav = () => {
-	return (
-		<div className="navWrapper">
-			<span className="headerText">Hogwarts</span>
-			<div className="TwirlyPig">
-				<a href="https://www.lowes.com/pd/LG-24-7-cu-ft-French-Door-Refrigerator-with-Ice-Maker-Stainless-steel/4746231">
-					<img src={piggy} className="App-logo" alt="piggy" />
-				</a>
-			</div>
-			<span className="normalText">A React App for County Fair Hog Fans</span>
-		</div>
-	)
+class Nav extends React.Component {
+  render() {
+    return (
+      <div className="navWrapper">
+        <span className="headerText">Hogwarts</span>
+        <div className="TwirlyPig">
+          <a href="https://www.lowes.com/pd/LG-24-7-cu-ft-French-Door-Refrigerator-with-Ice-Maker-Stainless-steel/4746231">
+            <img src={piggy} className="App-logo" alt="piggy" />
+          </a>
+        </div>
+        <span className="normalText">A React App for County Fair Hog Fans</span>
+        <br />
+        <label>Sort by Name</label>
+        <input onChange={this.props.handleNameSort} type="checkbox" />
+        <br />
+        <label>Sort by Weight</label>
+        <input onChange={this.props.handleWeightSort} type="checkbox" />
+        <br />
+        <label>Show only greasy bois</label>
+        <input onChange={this.props.handleGreaseFilter} type="checkbox" />
+      </div>
+    );
+  }
 }
 
-export default Nav
+export default Nav;
