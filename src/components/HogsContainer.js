@@ -3,7 +3,7 @@ import Hog from "./Hog";
 class HogsContainer extends Component {
   render() {
     return (
-      <div className="ui grid container">
+      <div className="ui cards">
         {this.props.hogs.map((hog, index) => {
           return <Hog key={index} hog={hog} />;
         })}

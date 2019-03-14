@@ -17,7 +17,7 @@ class Hog extends Component {
       .join("_");
     console.log(imgFile);
     return (
-      <div className="ui eight wide column">
+      <div className="ui  card">
         <p>{this.props.hog.name}</p>
         <img
           onClick={this.handleHogClick}
