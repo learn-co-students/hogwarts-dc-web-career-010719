@@ -138,3 +138,44 @@ ul {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.filter-bar {
+  width: 200px;
+  margin: 0 auto 20px auto;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #ccc;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.filter-bar > * {
+  display: block;
+}
+
+.filter-item {}
+
+.filter-item.active, .filter-item:hover {
+  color: blue;
+}
+
+.filter-item.active, .filter-item:active {
+  font-weight: bolder;
+}
+/* 
+.hog-card {
+  cursor: pointer;
+} */
+
+.hog-card {
+
+}
+
+.hog-card .details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-in;
+}
+
+.hog-card .details.enabled {
+  max-height: initial;
+}
