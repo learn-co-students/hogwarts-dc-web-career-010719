@@ -1,42 +1,57 @@
 import React, { Component } from "react";
-import HogDetails from "./HogDetails";
+
 class Hog extends Component {
   constructor() {
     super();
     this.state = {
-      details: false
+      showDetails: false,
+      showHog: true
     };
   }
-  handleHogClick = () => {
-    this.setState({ details: true });
+
+  handleClick = () => {
+    let details = this.state.showDetails;
+    this.setState({ showDetails: !details });
   };
+
+  hideHog = () => {
+    this.setState({
+      showHog: false
+    });
+  };
+
   render() {
-    let imgFile = this.props.hog.name
+    let name = this.props.hog.name
       .toLowerCase()
       .split(" ")
       .join("_");
-    console.log(imgFile);
-    return (
-      <div className="ui  card">
-        <p>{this.props.hog.name}</p>
+    return this.state.showHog ? (
+      <div className="ui eight wide column">
+        <h1>{this.props.hog.name}</h1>
         <img
-          onClick={this.handleHogClick}
-          src={require(`../hog-imgs/${imgFile}.jpg`)}
+          onClick={this.handleClick}
+          src={require(`../hog-imgs/${name}.jpg`)}
         />
-        {this.state.details ? (
-          <HogDetails
-            specialty={this.props.hog.specialty}
-            greased={this.props.hog.greased}
-            weight={
-              this.props.hog[
-                "weight as a ratio of hog to LG - 24.7 Cu. Ft. French Door Refrigerator with Thru-the-Door Ice and Water"
-              ]
-            }
-            medals={this.props.hog["highest medal achieved"]}
-          />
+        {this.state.showDetails ? (
+          <div>
+            <p>Specialty: {this.props.hog.specialty}</p>
+            <p>Greased: {this.props.hog.greased.toString()}</p>
+            <p>
+              Weight:
+              {
+                this.props.hog[
+                  "weight as a ratio of hog to LG - 24.7 Cu. Ft. French Door Refrigerator with Thru-the-Door Ice and Water"
+                ]
+              }
+            </p>
+            <p>
+              Highest medal earned: {this.props.hog["highest medal achieved"]}
+            </p>
+            <button onClick={this.hideHog}> HideHog</button>
+          </div>
         ) : null}
       </div>
-    );
+    ) : null;
   }
 }
 

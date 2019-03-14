@@ -3,12 +3,13 @@ import "../App.css";
 import Nav from "./Nav";
 import hogs from "../porkers_data";
 import HogsContainer from "./HogsContainer";
-import Filter from "./Filter";
+
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      hogs: hogs
+      hogs: hogs,
+      onlyGreased: false
     };
   }
 
@@ -27,6 +28,7 @@ class App extends Component {
       // names must be equal
       return 0;
     });
+
     this.setState({
       hogs: sortedHogs
     });
@@ -36,36 +38,42 @@ class App extends Component {
     let hogs = this.state.hogs;
     let sortedHogs = hogs.sort(function(a, b) {
       return (
-        b[
+        a[
           "weight as a ratio of hog to LG - 24.7 Cu. Ft. French Door Refrigerator with Thru-the-Door Ice and Water"
         ] -
-        a[
+        b[
           "weight as a ratio of hog to LG - 24.7 Cu. Ft. French Door Refrigerator with Thru-the-Door Ice and Water"
         ]
       );
     });
-    this.setState({ hogs: sortedHogs });
+    this.setState({
+      hogs: sortedHogs
+    });
   };
 
-  handleGrease = () => {
-    let hogs = this.state.hogs;
-    let greasedHogs = hogs.filter(hog => hog.greased === true);
-    this.setState({ hogs: greasedHogs });
+  handleGreaseFilter = () => {
+    this.setState({
+      onlyGreased: !this.state.onlyGreased
+    });
+  };
+
+  greaseFilteredHogs = () => {
+    return this.state.onlyGreased
+      ? this.state.hogs.filter(hog => {
+          return hog.greased === true;
+        })
+      : hogs;
   };
 
   render() {
     return (
       <div className="App">
-        <Nav />
-        <Filter
+        <Nav
           handleNameSort={this.handleNameSort}
           handleWeightSort={this.handleWeightSort}
-          handleGrease={this.handleGrease}
+          handleGreaseFilter={this.handleGreaseFilter}
         />
-        <HogsContainer
-          hogs={this.state.hogs}
-          handleHogClick={this.handleHogClick}
-        />
+        <HogsContainer greaseFilteredHogs={this.greaseFilteredHogs} />
       </div>
     );
   }
